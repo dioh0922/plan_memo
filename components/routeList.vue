@@ -21,9 +21,11 @@ const emit = defineEmits(["open"])
 const ideaOpen = (item) => {
     emit("open", item)
 }
+
 onMounted(async () => {
- const result = await $fetch("/api/stub")
- list.value = result.list
+ const result = await (await fetch("/api/list")).json().then((res) => {
+    list.value = res.list
+ })
 })
 </script>
 
