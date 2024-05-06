@@ -19,18 +19,21 @@
 </template>
 
 <script setup>
-const list = ref([])
 const isInit = ref(false)
 const emit = defineEmits(["open"])
 const ideaOpen = (item) => {
     emit("open", item)
 }
 
+const {data, pending, error, refresh} = await useAsyncData(
+    "list",
+    () => $fetch("/api/list")
+)
+
+const list = data.value.list
+
 onMounted(async () => {
- const result = (await fetch("/api/list")).json().then((res) => {
-    list.value = res.list
- })
- isInit.value = true
+    isInit.value = true
 })
 </script>
 
