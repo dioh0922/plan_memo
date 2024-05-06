@@ -1,12 +1,12 @@
 <template>
   <div>
     <v-app>
+      <v-app-bar app absolute color="primary">
+        <v-app-bar-title>
+          実現機能ネタまとめ
+        </v-app-bar-title>
+      </v-app-bar>
       <v-main>
-        <v-app-bar app absolute color="primary">
-          <v-app-bar-title>
-            実現機能ネタまとめ
-          </v-app-bar-title>
-        </v-app-bar>
           <RouteList @open="openIdea"/>
           <DetailDialog 
           @close="closeDialog" 
