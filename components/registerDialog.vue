@@ -36,6 +36,11 @@
                 'Content-Type': 'application/json',
             },
         }).then((res) => {
+            res.json().then((json) => {
+                if(json.result > 0){
+                    reloadNuxtApp()
+                }
+            })
         })
     }
 </script>
