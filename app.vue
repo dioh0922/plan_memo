@@ -15,5 +15,7 @@
 
 <script setup>
 onMounted(() => {
+  // TODO: APIをRESTに
+  // TODO: 編集時の変数の保持の仕方をリファクタリング
 })
 </script>
