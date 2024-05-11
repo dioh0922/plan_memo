@@ -1,0 +1,45 @@
+<template>
+    <v-card class="my-2" style="white-space:pre-wrap; word-wrap:break-word;">
+        <v-card-title>
+            新規追加
+        </v-card-title>
+        <v-card-actions>
+            <v-btn prepend-icon="mdi-plus" size="small">
+                <v-dialog v-model="active" activator="parent">
+                    <v-card>
+                        <v-card-text>
+                            <v-text-field v-model="summary" label="タイトル"></v-text-field>
+                            <v-textarea v-model="detail" label="内容"></v-textarea>
+                        </v-card-text>
+
+                        <v-card-actions>
+                            <v-btn color="success" @click="addIdea">add</v-btn>
+                            <v-btn @click="active = false">close</v-btn>
+                        </v-card-actions>
+                    </v-card>
+                </v-dialog>
+            </v-btn>
+
+        </v-card-actions>
+    </v-card>
+</template>
+<script setup>
+    const active = ref(false)
+    const summary = ref("")
+    const detail = ref("")
+    const addIdea = async () => {
+        const result = await fetch("/api/add",{
+            method: 'POST',
+            body: JSON.stringify({summary: summary.value, detail: detail.value}),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        }).then((res) => {
+            res.json().then((json) => {
+                if(json.result > 0){
+                    reloadNuxtApp()
+                }
+            })
+        })
+    }
+</script>
