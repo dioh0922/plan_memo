@@ -28,7 +28,7 @@
     const summary = ref("")
     const detail = ref("")
     const addIdea = async () => {
-        const result = await fetch("/api/add",{
+        const result = await fetch("/api/plans",{
             method: 'POST',
             body: JSON.stringify({summary: summary.value, detail: detail.value}),
             headers: {

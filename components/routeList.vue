@@ -30,12 +30,12 @@ const isInit = ref(false)
 
 const {data, pending, error, refresh} = await useAsyncData(
     "list",
-    () => $fetch("/api/list")
+    () => $fetch("/api/plans")
 )
 
 const deletePlan = async (id) => {
-    const result = await fetch("/api/delete",{
-        method: 'POST',
+    const result = await fetch("/api/plans/" + id ,{
+        method: 'DELETE',
         body: JSON.stringify({id: id}),
         headers: {
             'Content-Type': 'application/json',

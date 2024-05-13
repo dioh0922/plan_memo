@@ -35,9 +35,9 @@
     const active = ref(false)
     const editFlg = ref(false)
     const editPlan = async () => {
-        const result = await fetch("/api/edit",{
-            method: 'POST',
-            body: JSON.stringify({id: props.id, summary: summary.value, detail: detail.value}),
+        const result = await fetch("/api/plans/" + props.id,{
+            method: 'PUT',
+            body: JSON.stringify({summary: summary.value, detail: detail.value}),
             headers: {
                 'Content-Type': 'application/json',
             },
