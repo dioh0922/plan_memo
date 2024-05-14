@@ -7,15 +7,16 @@
         </v-app-bar-title>
       </v-app-bar>
       <v-main>
-          <RouteList />
+        <LoadingOverlay :disp="!isInit"/>
+        <RouteList />
       </v-main>
     </v-app>
   </div>
 </template>
 
 <script setup>
+const isInit = ref(false)
 onMounted(() => {
-  // TODO: APIをRESTに
-  // TODO: 編集時の変数の保持の仕方をリファクタリング
+  isInit.value = true
 })
 </script>
