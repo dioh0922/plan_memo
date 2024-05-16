@@ -15,8 +15,8 @@
 </template>
 
 <script setup>
-const isInit = ref(false)
-onMounted(() => {
-  isInit.value = true
-})
+  const isInit = ref(false)
+  onMounted(() => {
+    isInit.value = true
+  })
 </script>
