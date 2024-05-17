@@ -19,7 +19,6 @@
                     </v-card>
                 </v-dialog>
             </v-btn>
-
         </v-card-actions>
     </v-card>
 </template>
@@ -28,18 +27,22 @@
     const summary = ref("")
     const detail = ref("")
     const addIdea = async () => {
-        const result = await fetch("/api/add",{
+        const result = await fetch("/api/plans",{
             method: 'POST',
             body: JSON.stringify({summary: summary.value, detail: detail.value}),
             headers: {
                 'Content-Type': 'application/json',
             },
         }).then((res) => {
-            res.json().then((json) => {
-                if(json.result > 0){
-                    reloadNuxtApp()
-                }
-            })
+            if(res.status != 200){
+                showError({statusCode: res.status, statusMessage: res.statusText })
+            }else{
+                res.json().then((json) => {
+                    if(json.result > 0){
+                        reloadNuxtApp()
+                    }
+                })
+            }
         })
     }
 </script>

@@ -1,8 +1,8 @@
 export default defineEventHandler(async (event) => {
-    const body = await readBody(event);
+    const id = Number(getRouterParam(event, "id"))
     const deleted = await prisma.plan_memo.update({
       where: {
-        id: body.id
+        id: id
       },
       data:{
         is_delete: true
